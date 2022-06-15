@@ -1,0 +1,25 @@
+{
+  "name": "moduloRSA",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "node test.js",
+    "start": "nodemon index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "bigint-conversion": "^2.2.1",
+    "bigint-crypto-utils": "^3.0.23",
+    "cors": "^2.8.5",
+    "express": "^4.18.1",
+    "express-session": "^1.17.3",
+    "morgan": "^1.10.0",
+    "passport": "^0.6.0"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.16"
+  }
+}
