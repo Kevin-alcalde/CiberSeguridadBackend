@@ -5,13 +5,9 @@ const bigintConversion = require("bigint-conversion");
 const {PaillerPublicKey} = require ('../rsa/paillerPublicKey')
 const {PaillerPrivateKey} = require ('../rsa/paillerPrivateKey')
 
-privateKey = {}
-
-
 
 rsaController.getPulicKey = async (req, res) =>{
     rsaController.getRandomKeys = await myRsa.generateRsaKey(1024);
-    this.privateKey
     console.log( rsaController.getRandomKeys);
     res.json({
         publicKey: {
