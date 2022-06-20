@@ -22,6 +22,8 @@ keyUPC = {}
 router.get("/authentication", async (req, res) => {
   this.keyUPC = await  myRsa.generateRsaKey(1024);
   this.privateKey = this.keyUPC.privateKey;
+  console.log(bigintConversion.bigintToHex(this.keyUPC.publicKey.e) + " -->  E publica del servidor")
+  console.log(bigintConversion.bigintToHex(this.keyUPC.publicKey.n) + " -->  N publica del servidor")
   console.log( this.keyUPC);
   res.json({
       
@@ -60,10 +62,8 @@ router.get("/", (req, res, next) => {
       votos = PaillerPublicKey.encrypt(iniciarVoto);
 
     res.json({
-      eHex: bigintConversion.bigintToHex(keyRSA.publicKey.e),
-      nHex: bigintConversion.bigintToHex(keyRSA.publicKey.n),
-      nPaillierHex: bigintConversion.bigintToHex(PaillerPublicKey.n),
-      gPaillierHex: bigintConversion.bigintToHex(PaillerPublicKey.g)
+      nada: nada
+      
     })
   
 })
@@ -71,8 +71,9 @@ router.post("/signature", async (req, res) => {
   console.log("Se firmará el sigueinte mensaje : " + req.body.hashAlice)
   const firma = this.keyUPC.privateKey.sign(bigintConversion.hexToBigint(req.body.hashAlice))
   console.log("firma para Allice " + firma) 
+  console.log("firma para Allice en HEX "+ bigintConversion.bigintToHex(firma))
   res.json({
-    signature: bigintConversion.bigintToHex(firma)
+    signature:  bigintConversion.bigintToHex(firma)
   })
 
 })
@@ -80,7 +81,7 @@ router.get("/publickey" ,rsaController.getPulicKey);
 router.put(("/sendmessage"), rsaController.receiveEncryptedMessage)
 router.get("/getPublicKey", async (req, res) => {
   
-  console.log("peticion de llave publica de la UPC + " + this.keyUPC.publicKey)
+  console.log("peticion de llave publica de la UPC + " + this.keyUPC.publicKey.e)
   res.json({
 
       eHex: bigintConversion.bigintToHex( this.keyUPC.publicKey.e),
@@ -94,6 +95,5 @@ router.post("/login", passport.authenticate('local',{
   successRedirect: "/authentication",
   failureRedirect: "/"
 }))
-
 
 module.exports = router;
