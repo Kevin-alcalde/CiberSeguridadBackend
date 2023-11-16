@@ -40,12 +40,12 @@ passport.serializeUser(function(user, done) {
   done(null, user.id);
 });
 
-passport.deserializeUser(function(id, done){(null, {id:1, name:"Kevin"});
+passport.deserializeUser(function(id, done){(null, {id:1, name:"Pablo"});
 });
 
 passport.use(new PassPortLocal(function(username, password, done){
-  if(username === "grupo8" &&  password === "grupo8")
-  return done(null,{id: 1, name: "Kevin"});
+  if(username === "pablo" &&  password === "pablo")
+  return done(null,{id: 1, name: "Pablo"});
   done(null, false);
 }))
 
